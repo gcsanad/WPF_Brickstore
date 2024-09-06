@@ -21,5 +21,6 @@
             <Label Content="Id" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" FontWeight="Bold"/>
             <TextBox x:Name="tbId" Margin="10" Width="200" Height="30"/>
         </StackPanel>
+        
     </Grid>
 </Window>
