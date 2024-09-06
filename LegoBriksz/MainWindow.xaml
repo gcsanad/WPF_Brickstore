@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LegoBriksz"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Lego Briksz" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dgAdatok">
+            
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="btnBeolvas" Content="Beolvas" Height="40px" Width="100px" FontSize="20px" Margin="5" Click="btnBeolvas_Click"/>
+            <Label Content="Név" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" FontWeight="Bold"/>
+            <TextBox x:Name="tbNev" Margin="10" Width="200" Height="30"/>
+            <Label Content="Id" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" FontWeight="Bold"/>
+            <TextBox x:Name="tbId" Margin="10" Width="200" Height="30"/>
+        </StackPanel>
     </Grid>
 </Window>
