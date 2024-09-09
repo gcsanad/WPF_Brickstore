@@ -58,7 +58,6 @@ namespace LegoBriksz
                 }
                 
             };
-
             tbId.TextChanged += (s, e) =>
             {
                 if (kockak.Count > 0)
