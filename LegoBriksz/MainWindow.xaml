@@ -17,9 +17,12 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button x:Name="btnBeolvas" Content="Beolvas" Height="40px" Width="100px" FontSize="20px" Margin="5" Click="btnBeolvas_Click"/>
             <Label Content="Név" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" FontWeight="Bold"/>
-            <TextBox x:Name="tbNev" Margin="10" Width="200" Height="30"/>
+            <TextBox x:Name="tbNev" Margin="10" HorizontalContentAlignment="Center" Width="100" Height="30"/>
             <Label Content="Id" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" FontWeight="Bold"/>
-            <TextBox x:Name="tbId" Margin="10" Width="200" Height="30"/>
+            <TextBox x:Name="tbId" HorizontalContentAlignment="Center" Margin="10" Width="100" Height="30"/>
+            <Label Content="Kategória" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" FontWeight="Bold"/>
+            <ComboBox x:Name="cbKat" Margin="10" Width="100" HorizontalContentAlignment="Center" Height="30"/>
+            <Button x:Name="btnReset" Content="Reset" HorizontalContentAlignment="Center" Height="40px" Width="80px" FontSize="20px" Margin="5" Click="btnReset_Click"/>
         </StackPanel>
         
     </Grid>
