@@ -20,7 +20,7 @@ namespace LegoBriksz
     public partial class MainWindow : Window
     {
         List<Lego> kockak = [];
-        
+        List<string> kategoriak = [];
         public MainWindow()
         {
             InitializeComponent();
@@ -56,7 +56,11 @@ namespace LegoBriksz
                 {
                     MessageBox.Show("Nincs beolvasva adatbázis!");
                 }
-                
+                if (dgAdatok.Items.Count > 0)
+                {
+
+                    kategoriaValtozas();
+                }
             };
             tbId.TextChanged += (s, e) =>
             {
@@ -89,6 +93,11 @@ namespace LegoBriksz
                 {
                     MessageBox.Show("Nincs beolvasva adatbázis!");
                 }
+                if (dgAdatok.Items.Count > 0)
+                {
+
+                kategoriaValtozas();
+                }
             };
             cbKat.SelectionChanged += (s, e) =>
 
@@ -112,7 +121,7 @@ namespace LegoBriksz
                         dgAdatok.ItemsSource = kockak.Where(x => x.ItemName1.ToLower().StartsWith($"{tbNev.Text.ToLower()}") && x.CategoryName1 == $"{cbKat.SelectedItem}");
 
                     }
-                    else if (cbKat.SelectedIndex == -1)
+                    else if (cbKat.SelectedIndex != -1)
                     {
                         if (tbId.Text != "" && tbNev.Text != "")
                         {
@@ -144,6 +153,7 @@ namespace LegoBriksz
                 {
                     MessageBox.Show("Nincs beolvasva adatbázis!");
                 }
+                
             };
 
 
@@ -152,6 +162,7 @@ namespace LegoBriksz
 
         private void btnBeolvas_Click(object sender, RoutedEventArgs e)
         {
+            kategoriak.Add("Alaphelyzet");
             OpenFileDialog ofd = new OpenFileDialog();
             try
             {
@@ -161,14 +172,15 @@ namespace LegoBriksz
                 foreach (var item in doc.Descendants("Item"))
                 {
                         kockak.Add(new Lego($"{item.Element("ItemID").Value};{item.Element("ItemName").Value};{item.Element("CategoryName").Value};{item.Element("ColorName").Value};{item.Element("Qty").Value}"));
-                        
+                        kategoriak.Add($"{item.Element("CategoryName").Value}");
 
 
                 }
 
                 }
                 dgAdatok.ItemsSource = kockak;
-
+                cbKat.ItemsSource = kategoriak.OrderBy(x => x).Distinct();
+                
             }
             catch (Exception)
             {
@@ -179,7 +191,23 @@ namespace LegoBriksz
             //{
             //    cbKat.Items.Add(item);
             //};
-            cbKat.ItemsSource = kockak.OrderBy(x => x.CategoryName1).Select(x => x.CategoryName1).Distinct();
+            //cbKat.ItemsSource = kockak.OrderBy(x => x.CategoryName1).Select(x => x.CategoryName1).Distinct();
+            
+        }
+
+        private void kategoriaValtozas()
+        {
+            if (dgAdatok.Items.Count != 0)
+            {
+            kategoriak.Clear();
+            kategoriak.Add("Alaphelyzet");
+            foreach (var item in dgAdatok.Items)
+            {
+                kategoriak.Add(item.ToString().Split(';')[2]);
+            }
+            cbKat.ItemsSource = kategoriak.OrderBy(x => x).Distinct();
+
+            }
             
         }
 
